@@ -1,30 +1,24 @@
-# Starter pipeline
-# Start with a minimal pipeline that you can customize to build and deploy your code.
-#We will use checkov for static code analysis
-# Add steps that build, run tests, deploy, and more:
-# https://aka.ms/yaml
-
 trigger:
 - main
 
 variables:
  - name: 'serviceconnection'
-   value: 'fitnessgeek-sc'
+   value: 'tf-azure-sc'
 
  - name: 'environment'
    value: 'dev'
 
  - name: 'backend_rg'
-   value: 'terraform-backend'
+   value: 'tf-backend-rg'
 
  - name: 'backend_storageaccount'
-   value: 'terraformbackend2023'
+   value: 'tfmbackendstore'
 
  - name: 'backend_container'
-   value: 'terraform'
+   value: 'tfmstate'
 
  - name: 'backendkey_tfstate'
-   value: 'terraform.tfstate'
+   value: 'dev.terraform.tfstate'
 
  - name: 'working_directory'
    value: '$(System.DefaultWorkingDirectory)'
@@ -161,7 +155,7 @@ stages :
           timeoutInMinutes: 1440 # task times out in 1 day
           inputs:
             notifyUsers: |
-              rdadhichi@cultwines.com
+              kesir.sre@gmail.com
             instructions: 'Please validate the build configuration and resume'
             onTimeout: 'reject'
       
