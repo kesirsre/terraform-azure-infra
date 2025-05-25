@@ -8,14 +8,14 @@ This project defines basic cloud infrastructure on *Microsoft Azure* using *Terr
 - Windows Virtual Machine
 - Load Balancer
 
-## Tools Used
+# Tools Used
 
 - Cloud Provider: Microsoft Azure
 - IaC Tool: Terraform v1.5+
 - Modules: Native resources defined in HCL
 - CI/CD: ADO pipeline
 
-## Resource Choices
+# Resource Choices
 
 | Resource          | Purpose |
 |---------          |--------|
@@ -73,7 +73,7 @@ IaaC/
 │   .terraform                        # Terraform metadata
 └── .terraform.lock.hcl               # Terraform provider lock file (auto-generated)
 
-## How to Deploy
+# How to Deploy
 
 Make sure you have Terraform and Azure CLI installed. Then run the following for manual provisioning:
 
