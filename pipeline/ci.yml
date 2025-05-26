@@ -1,5 +1,5 @@
 trigger:
-- main
+- master
 
 variables:
  - name: 'serviceconnection'
@@ -22,8 +22,6 @@ variables:
 
  - name: 'working_directory'
    value: '$(System.DefaultWorkingDirectory)'
-
-
 
 pool:
   vmImage: ubuntu-latest
@@ -121,7 +119,6 @@ stages :
             environmentServiceNameAzureRM: $(serviceconnection)
             workingDirectory: '$(working_directory)'
 
-#Checkov to scan the execution plan for vulnerabilities and exposed outputs
         - task: Bash@3
           inputs:
             targetType: 'inline'
@@ -149,19 +146,16 @@ stages :
       - job: waitForValidation
         displayName: Wait for execution plan validation
         pool: server
-        timeoutInMinutes: 4320 # job times out in 3 days
+        timeoutInMinutes: 4320 
         steps:
         - task: ManualValidation@0
-          timeoutInMinutes: 1440 # task times out in 1 day
+          timeoutInMinutes: 1440 
           inputs:
             notifyUsers: |
               kesir.sre@gmail.com
             instructions: 'Please validate the build configuration and resume'
             onTimeout: 'reject'
       
-# Adding the apply job
-#timeoutInMinutes: 0 is very important else the pipeline job will timeout
-
       - job: Terraform_apply_dev
         dependsOn :
         - plan
