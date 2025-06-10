@@ -42,7 +42,7 @@ stages :
           inputs:
             targetType: 'inline'
             workingDirectory: $(working_directory)
-            script: 'checkov -d . -o junitxml > scan-result.xml --soft-fail'
+            script: 'checkov -d . -o junitxml > scan-result.xml --soft-fail false'
             displayName: Checkov source code scan
             continueOnError: true
         - task: PublishTestResults@2
